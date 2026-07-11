@@ -1,0 +1,30 @@
+@startuml
+skinparam shadowing false
+actor "ESP32" as ESP
+participant "Broker MQTT" as MQTT
+participant "Node-RED" as NR
+database "InfluxDB" as Influx
+database "MongoDB" as Mongo
+collections "Redis Sentinel" as Redis
+participant "FastAPI" as API
+actor "Dashboard React" as React
+
+ESP -> MQTT : Publier mesure MQTT
+MQTT -> NR : Transmettre message
+NR -> NR : Valider JSON\nFiltrer\nEnrichir site/lot
+NR -> Influx : Stocker mesure temporelle
+NR -> Mongo : Mettre à jour métadonnées
+NR -> NR : Détection anomalie / fraude
+
+alt Données normales
+  NR -> Redis : Mettre à jour dernière mesure
+  React -> API : Demander mesures temps réel
+  API -> Redis : Lire cache
+  API --> React : Mesures à jour
+else Fraude détectée
+  NR -> Redis : Publier alerte Pub/Sub
+  NR -> Mongo : Journaliser incident
+  API -> Redis : Souscription alertes
+  API --> React : Notification WebSocket
+end
+@enduml

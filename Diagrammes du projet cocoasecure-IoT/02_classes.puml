@@ -1,0 +1,100 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #1F6F43
+  ArrowColor #333333
+}
+
+class Site {
+  +id: String
+  +nom: String
+  +localisation: String
+  +latitude: Float
+  +longitude: Float
+  +ajouterCapteur()
+  +listerCapteurs()
+}
+
+class Capteur {
+  +deviceId: String
+  +type: String
+  +statut: String
+  +dernierSignal: DateTime
+  +siteId: String
+  +publierMesure()
+  +changerStatut()
+}
+
+class LotCacao {
+  +lotId: String
+  +cooperative: String
+  +dateDebutSechage: DateTime
+  +statut: String
+  +calculerConformite()
+}
+
+class Mesure {
+  +id: String
+  +timestamp: DateTime
+  +temperature: Float
+  +humidite: Float
+  +co2: Float
+  +luminosite: Float
+  +estValide()
+}
+
+class Alerte {
+  +id: String
+  +type: String
+  +niveau: String
+  +message: String
+  +dateCreation: DateTime
+  +statut: String
+  +acquitter()
+}
+
+class RegleDetection {
+  +id: String
+  +nom: String
+  +seuilMin: Float
+  +seuilMax: Float
+  +active: Boolean
+  +evaluer(mesure)
+}
+
+class Utilisateur {
+  +id: String
+  +nom: String
+  +email: String
+  +motDePasseHash: String
+  +role: Role
+  +seConnecter()
+}
+
+enum Role {
+  ADMIN
+  OPERATEUR
+}
+
+class IncidentSecurite {
+  +id: String
+  +typeAttaque: String
+  +source: String
+  +preuve: String
+  +timestamp: DateTime
+  +journaliser()
+}
+
+Site "1" o-- "1..*" Capteur : contient
+Capteur "1" --> "0..*" Mesure : produit
+LotCacao "1" --> "0..*" Mesure : concerne
+Mesure "1" --> "0..*" Alerte : déclenche
+RegleDetection "1" --> "0..*" Mesure : évalue
+RegleDetection "1" --> "0..*" Alerte : génère
+Utilisateur "1" --> "0..*" Alerte : consulte / acquitte
+IncidentSecurite "1" --> "0..*" Alerte : peut créer
+Capteur "1" --> "0..*" IncidentSecurite : usurpation possible
+Utilisateur --> Role
+@enduml

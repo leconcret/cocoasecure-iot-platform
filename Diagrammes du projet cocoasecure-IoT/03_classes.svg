@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="950" viewBox="0 0 1500 950">
+<style>
+    .title { font: bold 30px Arial; fill:#123; }
+    .sub { font: 18px Arial; fill:#333; }
+    .box { fill:#ffffff; stroke:#1f6f43; stroke-width:2; rx:14; }
+    .actor { fill:#f8fff9; stroke:#1f6f43; stroke-width:2; rx:12; }
+    .usecase { fill:#eef8f0; stroke:#1f6f43; stroke-width:2; }
+    .arrow { stroke:#333; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    .line { stroke:#555; stroke-width:2; fill:none; }
+    .dash { stroke:#444; stroke-width:2; fill:none; stroke-dasharray:7 6; marker-end:url(#arrow); }
+    .txt { font: 15px Arial; fill:#111; }
+    .small { font: 13px Arial; fill:#333; }
+    .head { fill:#1f6f43; }
+    .headtxt { font: bold 16px Arial; fill:white; }
+</style>
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+</marker>
+</defs>
+<text x="750" y="45" text-anchor="middle" class="title">Diagramme de classes — CocoaSecure-IoT</text>
+<rect x="60" y="110" width="240" height="200" class="box"/>
+<rect x="60" y="110" width="240" height="35" class="head"/>
+<text x="180.0" y="133" text-anchor="middle" class="headtxt">Site</text>
+<text x="72" y="170" class="txt">+ id: str</text>
+<text x="72" y="190" class="txt">+ nom: str</text>
+<text x="72" y="210" class="txt">+ latitude: float</text>
+<text x="72" y="230" class="txt">+ longitude: float</text>
+<line x1="60" y1="250" x2="300" y2="250" stroke="#1f6f43"/>
+<text x="72" y="275" class="txt">+ ajouterCapteur()</text>
+<rect x="380" y="110" width="260" height="220" class="box"/>
+<rect x="380" y="110" width="260" height="35" class="head"/>
+<text x="510.0" y="133" text-anchor="middle" class="headtxt">Capteur</text>
+<text x="392" y="170" class="txt">+ deviceId: str</text>
+<text x="392" y="190" class="txt">+ type: str</text>
+<text x="392" y="210" class="txt">+ statut: str</text>
+<text x="392" y="230" class="txt">+ siteId: str</text>
+<text x="392" y="250" class="txt">+ dernierSignal: datetime</text>
+<line x1="380" y1="270" x2="640" y2="270" stroke="#1f6f43"/>
+<text x="392" y="295" class="txt">+ publierMesure()</text>
+<rect x="740" y="110" width="280" height="210" class="box"/>
+<rect x="740" y="110" width="280" height="35" class="head"/>
+<text x="880.0" y="133" text-anchor="middle" class="headtxt">RegleDetection</text>
+<text x="752" y="170" class="txt">+ id: str</text>
+<text x="752" y="190" class="txt">+ nom: str</text>
+<text x="752" y="210" class="txt">+ seuilMin: float</text>
+<text x="752" y="230" class="txt">+ seuilMax: float</text>
+<text x="752" y="250" class="txt">+ active: bool</text>
+<line x1="740" y1="270" x2="1020" y2="270" stroke="#1f6f43"/>
+<text x="752" y="295" class="txt">+ evaluer(mesure)</text>
+<rect x="1100" y="110" width="260" height="190" class="box"/>
+<rect x="1100" y="110" width="260" height="35" class="head"/>
+<text x="1230.0" y="133" text-anchor="middle" class="headtxt">Utilisateur</text>
+<text x="1112" y="170" class="txt">+ id: str</text>
+<text x="1112" y="190" class="txt">+ nom: str</text>
+<text x="1112" y="210" class="txt">+ email: str</text>
+<text x="1112" y="230" class="txt">+ role: Role</text>
+<line x1="1100" y1="250" x2="1360" y2="250" stroke="#1f6f43"/>
+<text x="1112" y="275" class="txt">+ seConnecter()</text>
+<rect x="60" y="430" width="270" height="190" class="box"/>
+<rect x="60" y="430" width="270" height="35" class="head"/>
+<text x="195.0" y="453" text-anchor="middle" class="headtxt">LotCacao</text>
+<text x="72" y="490" class="txt">+ lotId: str</text>
+<text x="72" y="510" class="txt">+ cooperative: str</text>
+<text x="72" y="530" class="txt">+ dateDebutSechage: datetime</text>
+<text x="72" y="550" class="txt">+ statut: str</text>
+<line x1="60" y1="570" x2="330" y2="570" stroke="#1f6f43"/>
+<text x="72" y="595" class="txt">+ calculerConformite()</text>
+<rect x="420" y="430" width="300" height="240" class="box"/>
+<rect x="420" y="430" width="300" height="35" class="head"/>
+<text x="570.0" y="453" text-anchor="middle" class="headtxt">Mesure</text>
+<text x="432" y="490" class="txt">+ id: str</text>
+<text x="432" y="510" class="txt">+ timestamp: datetime</text>
+<text x="432" y="530" class="txt">+ temperature: float</text>
+<text x="432" y="550" class="txt">+ humidite: float</text>
+<text x="432" y="570" class="txt">+ co2: float</text>
+<text x="432" y="590" class="txt">+ luminosite: float</text>
+<line x1="420" y1="610" x2="720" y2="610" stroke="#1f6f43"/>
+<text x="432" y="635" class="txt">+ estValide()</text>
+<rect x="800" y="430" width="300" height="230" class="box"/>
+<rect x="800" y="430" width="300" height="35" class="head"/>
+<text x="950.0" y="453" text-anchor="middle" class="headtxt">Alerte</text>
+<text x="812" y="490" class="txt">+ id: str</text>
+<text x="812" y="510" class="txt">+ type: str</text>
+<text x="812" y="530" class="txt">+ niveau: str</text>
+<text x="812" y="550" class="txt">+ message: str</text>
+<text x="812" y="570" class="txt">+ statut: str</text>
+<line x1="800" y1="590" x2="1100" y2="590" stroke="#1f6f43"/>
+<text x="812" y="615" class="txt">+ acquitter()</text>
+<rect x="1160" y="430" width="280" height="210" class="box"/>
+<rect x="1160" y="430" width="280" height="35" class="head"/>
+<text x="1300.0" y="453" text-anchor="middle" class="headtxt">IncidentSecurite</text>
+<text x="1172" y="490" class="txt">+ id: str</text>
+<text x="1172" y="510" class="txt">+ typeAttaque: str</text>
+<text x="1172" y="530" class="txt">+ source: str</text>
+<text x="1172" y="550" class="txt">+ preuve: str</text>
+<text x="1172" y="570" class="txt">+ timestamp: datetime</text>
+<line x1="1160" y1="590" x2="1440" y2="590" stroke="#1f6f43"/>
+<text x="1172" y="615" class="txt">+ journaliser()</text>
+<line x1="300" y1="200" x2="380" y2="200" class="arrow"/>
+<text x="340.0" y="194.0" text-anchor="middle" class="small">1..*</text>
+<line x1="640" y1="220" x2="520" y2="430" class="arrow"/>
+<text x="580.0" y="319.0" text-anchor="middle" class="small">produit</text>
+<line x1="330" y1="520" x2="420" y2="520" class="arrow"/>
+<text x="375.0" y="514.0" text-anchor="middle" class="small">concerne</text>
+<line x1="720" y1="550" x2="800" y2="550" class="arrow"/>
+<text x="760.0" y="544.0" text-anchor="middle" class="small">déclenche</text>
+<line x1="880" y1="320" x2="880" y2="430" class="arrow"/>
+<text x="880.0" y="369.0" text-anchor="middle" class="small">génère</text>
+<line x1="1020" y1="220" x2="720" y2="500" class="arrow"/>
+<text x="870.0" y="354.0" text-anchor="middle" class="small">évalue</text>
+<line x1="1230" y1="300" x2="960" y2="430" class="arrow"/>
+<text x="1095.0" y="359.0" text-anchor="middle" class="small">consulte</text>
+<line x1="1160" y1="535" x2="1100" y2="535" class="arrow"/>
+<text x="1130.0" y="529.0" text-anchor="middle" class="small">crée</text>
+</svg>

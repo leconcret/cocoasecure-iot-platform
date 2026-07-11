@@ -1,0 +1,82 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #EAF7EF
+  BorderColor #1F6F43
+}
+skinparam rectangle {
+  BorderColor #1F6F43
+}
+
+actor "Administrateur" as Admin
+actor "Opérateur\ncoopérative" as Operateur
+actor "ESP32 /\nCapteur IoT" as Capteur
+actor "Attaquant" as Attaquant
+actor "Service de\ndétection fraude" as Detection
+
+rectangle "CocoaSecure-IoT" {
+  usecase "S'authentifier" as UC_AUTH
+
+  usecase "Gérer utilisateurs" as UC_USERS
+  usecase "Gérer capteurs" as UC_DEVICES
+  usecase "Gérer sites" as UC_SITES
+  usecase "Configurer seuils" as UC_THRESHOLDS
+  usecase "Consulter métriques\nsystème" as UC_METRICS
+
+  usecase "Consulter mesures\ntemps réel" as UC_REALTIME
+  usecase "Consulter historique" as UC_HISTORY
+  usecase "Consulter carte\ndes sites" as UC_MAP
+  usecase "Consulter alertes" as UC_ALERTS
+
+  usecase "S'authentifier auprès\ndu broker MQTT" as UC_AUTH_DEVICE
+  usecase "Publier mesures MQTT" as UC_PUBLISH
+
+  usecase "Sniffer communications\nMQTT" as UC_SNIFF
+  usecase "Injecter faux\nmessages MQTT" as UC_INJECT
+  usecase "Rejouer messages MQTT" as UC_REPLAY
+  usecase "Tenter usurpation\ncapteur" as UC_SPOOF
+
+  usecase "Analyser mesures" as UC_ANALYSE
+  usecase "Détecter anomalies" as UC_ANOMALY
+  usecase "Détecter fraude" as UC_FRAUD
+  usecase "Générer alerte" as UC_GEN_ALERT
+  usecase "Journaliser incident" as UC_LOG
+}
+
+Admin --> UC_AUTH
+Admin --> UC_USERS
+Admin --> UC_DEVICES
+Admin --> UC_SITES
+Admin --> UC_THRESHOLDS
+Admin --> UC_ALERTS
+Admin --> UC_METRICS
+
+Operateur --> UC_AUTH
+Operateur --> UC_REALTIME
+Operateur --> UC_HISTORY
+Operateur --> UC_MAP
+Operateur --> UC_ALERTS
+
+Capteur --> UC_AUTH_DEVICE
+Capteur --> UC_PUBLISH
+
+Attaquant --> UC_SNIFF
+Attaquant --> UC_INJECT
+Attaquant --> UC_REPLAY
+Attaquant --> UC_SPOOF
+
+Detection --> UC_ANALYSE
+Detection --> UC_ANOMALY
+Detection --> UC_FRAUD
+Detection --> UC_GEN_ALERT
+Detection --> UC_LOG
+
+UC_PUBLISH ..> UC_AUTH_DEVICE : <<include>>
+UC_FRAUD ..> UC_ANOMALY : <<include>>
+UC_GEN_ALERT ..> UC_FRAUD : <<include>>
+UC_HISTORY ..> UC_REALTIME : <<extend>>
+UC_LOG ..> UC_GEN_ALERT : <<include>>
+@enduml

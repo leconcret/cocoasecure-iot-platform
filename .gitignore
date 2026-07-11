@@ -1,0 +1,50 @@
+# Dépendances Node.js
+node_modules/
+frontend/node_modules/
+
+# Fichiers générés par le frontend
+dist/
+build/
+frontend/dist/
+frontend/build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Variables d'environnement et secrets
+.env
+.env.local
+.env.*.local
+
+# Journaux
+*.log
+logs/
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Fichiers système
+Thumbs.db
+.DS_Store
+
+# Sauvegardes de bases de données
+dump/
+backups/
+
+# Couverture de tests
+coverage/
+.pytest_cache/
+
+
+# Node-RED
+node-red/node_modules/
+node-red/.npm/
+
+# Sauvegardes Node-RED
+node-red/*.backup

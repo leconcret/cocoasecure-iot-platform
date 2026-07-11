@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850">
+<style>
+    .title { font: bold 30px Arial; fill:#123; }
+    .sub { font: 18px Arial; fill:#333; }
+    .box { fill:#ffffff; stroke:#1f6f43; stroke-width:2; rx:14; }
+    .actor { fill:#f8fff9; stroke:#1f6f43; stroke-width:2; rx:12; }
+    .usecase { fill:#eef8f0; stroke:#1f6f43; stroke-width:2; }
+    .arrow { stroke:#333; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    .line { stroke:#555; stroke-width:2; fill:none; }
+    .dash { stroke:#444; stroke-width:2; fill:none; stroke-dasharray:7 6; marker-end:url(#arrow); }
+    .txt { font: 15px Arial; fill:#111; }
+    .small { font: 13px Arial; fill:#333; }
+    .head { fill:#1f6f43; }
+    .headtxt { font: bold 16px Arial; fill:white; }
+</style>
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+</marker>
+</defs>
+<text x="700" y="45" text-anchor="middle" class="title">Diagramme de séquence — Publication d’une mesure et détection de fraude</text>
+<rect x="35" y="90" width="110" height="45" class="box"/>
+<text x="90.0" y="112.5" text-anchor="middle" class="txt" font-size="15">ESP32</text>
+<line x1="90" y1="135" x2="90" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="215" y="90" width="110" height="45" class="box"/>
+<text x="270.0" y="112.5" text-anchor="middle" class="txt" font-size="15">MQTT</text>
+<line x1="270" y1="135" x2="270" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="395" y="90" width="110" height="45" class="box"/>
+<text x="450.0" y="112.5" text-anchor="middle" class="txt" font-size="15">Node-RED</text>
+<line x1="450" y1="135" x2="450" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="595" y="90" width="110" height="45" class="box"/>
+<text x="650.0" y="112.5" text-anchor="middle" class="txt" font-size="15">InfluxDB</text>
+<line x1="650" y1="135" x2="650" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="755" y="90" width="110" height="45" class="box"/>
+<text x="810.0" y="112.5" text-anchor="middle" class="txt" font-size="15">MongoDB</text>
+<line x1="810" y1="135" x2="810" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="915" y="90" width="110" height="45" class="box"/>
+<text x="970.0" y="112.5" text-anchor="middle" class="txt" font-size="15">Redis</text>
+<line x1="970" y1="135" x2="970" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="1075" y="90" width="110" height="45" class="box"/>
+<text x="1130.0" y="112.5" text-anchor="middle" class="txt" font-size="15">FastAPI</text>
+<line x1="1130" y1="135" x2="1130" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<rect x="1235" y="90" width="110" height="45" class="box"/>
+<text x="1290.0" y="112.5" text-anchor="middle" class="txt" font-size="15">React</text>
+<line x1="1290" y1="135" x2="1290" y2="760" stroke="#999" stroke-dasharray="6 6"/>
+<line x1="90" y1="180" x2="270" y2="180" class="arrow"/>
+<text x="180.0" y="174.0" text-anchor="middle" class="small">Publie mesure MQTT</text>
+<line x1="270" y1="250" x2="450" y2="250" class="arrow"/>
+<text x="360.0" y="244.0" text-anchor="middle" class="small">Transmet message</text>
+<line x1="450" y1="320" x2="650" y2="320" class="arrow"/>
+<text x="550.0" y="314.0" text-anchor="middle" class="small">Stocke mesure</text>
+<line x1="450" y1="390" x2="810" y2="390" class="arrow"/>
+<text x="630.0" y="384.0" text-anchor="middle" class="small">Met à jour metadata</text>
+<line x1="450" y1="460" x2="970" y2="460" class="arrow"/>
+<text x="710.0" y="454.0" text-anchor="middle" class="small">Publie alerte / cache</text>
+<line x1="970" y1="530" x2="1130" y2="530" class="arrow"/>
+<text x="1050.0" y="524.0" text-anchor="middle" class="small">WebSocket / PubSub</text>
+<line x1="1130" y1="600" x2="1290" y2="600" class="arrow"/>
+<text x="1210.0" y="594.0" text-anchor="middle" class="small">Envoie données temps réel</text>
+<rect x="500" y="670" width="360" height="70" class="actor"/>
+<text x="680.0" y="696.75" text-anchor="middle" class="txt" font-size="15">Si anomalie : création d'une alerte</text>
+<text x="680.0" y="714.75" text-anchor="middle" class="txt" font-size="15">fraude</text>
+</svg>

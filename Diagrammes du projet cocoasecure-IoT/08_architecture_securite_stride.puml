@@ -1,0 +1,32 @@
+@startuml
+skinparam shadowing false
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #1F6F43
+}
+
+rectangle "Menaces STRIDE" {
+  rectangle "Spoofing\nUsurpation capteur" as S
+  rectangle "Tampering\nModification mesures" as T
+  rectangle "Repudiation\nAction non traçable" as R
+  rectangle "Information Disclosure\nSniffing MQTT" as I
+  rectangle "Denial of Service\nSurcharge broker/API" as D
+  rectangle "Elevation of Privilege\nAccès admin abusif" as E
+}
+
+rectangle "Contre-mesures CocoaSecure-IoT" {
+  rectangle "TLS 1.3 + X.509\nAuthentification capteur" as C1
+  rectangle "Validation JSON\nSeuils + z-score" as C2
+  rectangle "Logs Kibana\nJournal incidents" as C3
+  rectangle "Chiffrement MQTT\nJWT API" as C4
+  rectangle "Rate limiting Redis\nNginx LB" as C5
+  rectangle "RBAC Admin/Opérateur" as C6
+}
+
+S --> C1
+T --> C2
+R --> C3
+I --> C4
+D --> C5
+E --> C6
+@enduml

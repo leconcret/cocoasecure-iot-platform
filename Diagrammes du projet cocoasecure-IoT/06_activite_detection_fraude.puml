@@ -1,0 +1,23 @@
+@startuml
+skinparam shadowing false
+start
+:Réception d'une mesure MQTT;
+:Validation du format JSON;
+if (Capteur autorisé ?) then (oui)
+  :Contrôle des seuils métier;
+  if (Humidité ou température incohérente ?) then (oui)
+    :Créer alerte de fraude;
+    :Journaliser incident;
+    :Publier alerte dans Redis Pub/Sub;
+    :Notifier dashboard React;
+  else (non)
+    :Stocker mesure normale;
+    :Mettre à jour cache Redis;
+  endif
+else (non)
+  :Créer incident de sécurité;
+  :Bloquer / ignorer message;
+  :Notifier administrateur;
+endif
+stop
+@enduml

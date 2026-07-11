@@ -1,0 +1,38 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #1F6F43
+}
+
+component "Simulation capteurs\nESP32 / Wokwi" as Sensors
+component "Broker MQTT\nMosquitto / EMQX" as Broker
+component "Pipeline Node-RED\nValidation + enrichissement" as NodeRED
+component "Détection fraude\nRègles + z-score" as Fraud
+component "InfluxDB\nTime Series" as Influx
+component "MongoDB\nMétadonnées GeoJSON" as Mongo
+component "Redis Sentinel\nCache + Pub/Sub" as Redis
+component "FastAPI\nREST + JWT + Swagger" as API
+component "Nginx\nLoad Balancer" as Nginx
+component "Dashboard React\n6 vues" as React
+component "Prometheus" as Prom
+component "Grafana" as Grafana
+component "Kibana / ELK" as Kibana
+
+Sensors --> Broker : MQTT
+Broker --> NodeRED : subscribe
+NodeRED --> Fraud : mesure validée
+Fraud --> Redis : alerte Pub/Sub
+NodeRED --> Influx : write
+NodeRED --> Mongo : metadata
+API --> Redis : cache-aside
+API --> Influx : lecture historique
+API --> Mongo : lecture devices/sites
+React --> Nginx : REST/WebSocket
+Nginx --> API : reverse proxy
+Prom --> Grafana
+Influx --> Grafana
+Kibana --> React : iframe / logs
+Grafana --> React : iframe panels
+@enduml

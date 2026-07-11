@@ -1,0 +1,79 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: cacao_mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./broker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:6
+    container_name: cacao_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: cacao_influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123456
+      DOCKER_INFLUXDB_INIT_ORG: CocoaSecure
+      DOCKER_INFLUXDB_INIT_BUCKET: cacao_measurements
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: cacao-token-123456
+    volumes:
+      - influx_data:/var/lib/influxdb2
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: cacao_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  node-red:
+    image: nodered/node-red:latest
+    container_name: cacao_node_red
+    ports:
+      - "1880:1880"
+    volumes:
+      - node_red_data:/data
+    depends_on:
+      - mosquitto
+      - mongodb
+      - influxdb
+      - redis
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    container_name: cacao_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+      - influxdb
+    restart: unless-stopped
+  
+  frontend:
+    build: ./frontend
+    container_name: cacao_frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    restart: unless-stopped
+volumes:
+  mongo_data:
+  influx_data:
+  node_red_data:

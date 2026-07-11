@@ -1,0 +1,20 @@
+@startuml
+skinparam shadowing false
+actor "Attaquant" as A
+participant "Broker MQTT\nvulnérable" as MQTT
+participant "Node-RED" as NR
+database "InfluxDB" as Influx
+collections "Redis" as Redis
+participant "Dashboard React" as React
+
+A -> MQTT : Rejouer ancien message capturé
+MQTT -> NR : Message reçu
+NR -> NR : Vérifier timestamp\net signature capteur
+alt Message suspect
+  NR -> Redis : Publier alerte fraude
+  NR -> Influx : Stocker événement suspect
+  Redis -> React : Notification temps réel
+else Message accepté
+  NR -> Influx : Stocker mesure
+end
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+skinparam shadowing false
+skinparam node {
+  BackgroundColor #FFFFFF
+  BorderColor #1F6F43
+}
+skinparam database {
+  BorderColor #1F6F43
+}
+node "Couche Edge" {
+  node "ESP32 / Wokwi\nESP01..ESP05" as ESP
+}
+
+node "Broker MQTT" {
+  node "Mosquitto ou EMQX\nTLS 1.3 / X.509" as MQTT
+}
+
+node "Traitement" {
+  node "Node-RED\nFiltrage + détection" as NR
+}
+
+database "InfluxDB v2\nMesures temporelles" as Influx
+database "MongoDB\nMétadonnées + GeoJSON" as Mongo
+
+node "Cache HA" {
+  node "Redis Master" as RMaster
+  node "Redis Replica 1" as R1
+  node "Redis Replica 2" as R2
+  node "Redis Sentinel x3" as Sentinel
+}
+
+node "API" {
+  node "Nginx Load Balancer" as Nginx
+  node "FastAPI instance 1" as API1
+  node "FastAPI instance 2" as API2
+  node "FastAPI instance 3" as API3
+}
+
+node "Présentation" {
+  node "Dashboard React SPA" as React
+}
+
+node "Observabilité" {
+  node "Prometheus" as Prom
+  node "Grafana" as Graf
+  node "Kibana / ELK" as Kibana
+}
+
+ESP --> MQTT : MQTT
+MQTT --> NR : messages
+NR --> Influx : écrit mesures
+NR --> Mongo : écrit métadonnées
+NR --> RMaster : cache / PubSub
+
+RMaster --> R1 : réplication
+RMaster --> R2 : réplication
+Sentinel --> RMaster : supervision failover
+
+React --> Nginx : REST / WebSocket
+Nginx --> API1
+Nginx --> API2
+Nginx --> API3
+
+API1 --> RMaster
+API2 --> RMaster
+API3 --> RMaster
+API1 --> Influx
+API2 --> Mongo
+
+Prom --> Graf : datasource
+Influx --> Graf : datasource
+Kibana --> React : logs embarqués
+Graf --> React : panels iframe
+@enduml
