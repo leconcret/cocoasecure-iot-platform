@@ -55,6 +55,20 @@ services:
       - redis
     restart: unless-stopped
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: cacao_grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - influxdb
+
   api:
     build: ./backend
     container_name: cacao_api
@@ -77,3 +91,4 @@ volumes:
   mongo_data:
   influx_data:
   node_red_data:
+  grafana_data:
