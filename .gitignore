@@ -35,7 +35,7 @@ Thumbs.db
 
 # Sauvegardes de bases de données
 dump/
-backups/
+
 
 # Couverture de tests
 coverage/

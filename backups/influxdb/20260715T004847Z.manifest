@@ -1,0 +1,140 @@
+{
+  "manifestVersion": 2,
+  "kv": {
+    "fileName": "20260715T004847Z.bolt.gz",
+    "size": 3404,
+    "compression": 1
+  },
+  "sql": {
+    "fileName": "20260715T004847Z.sqlite.gz",
+    "size": 3447,
+    "compression": 1
+  },
+  "buckets": [
+    {
+      "organizationID": "71b1970deb13d880",
+      "organizationName": "CocoaSecure",
+      "bucketID": "2130211c1b39a56d",
+      "bucketName": "_monitoring",
+      "description": "System bucket for monitoring logs",
+      "defaultRetentionPolicy": "autogen",
+      "retentionPolicies": [
+        {
+          "name": "autogen",
+          "replicaN": 1,
+          "duration": 604800000000000,
+          "shardGroupDuration": 86400000000000,
+          "shardGroups": [
+            {
+              "id": 2,
+              "startTime": "2026-06-29T00:00:00Z",
+              "endTime": "2026-06-30T00:00:00Z",
+              "deletedAt": "2026-07-07T12:31:16.667495348Z",
+              "shards": []
+            },
+            {
+              "id": 3,
+              "startTime": "2026-06-30T00:00:00Z",
+              "endTime": "2026-07-01T00:00:00Z",
+              "deletedAt": "2026-07-08T06:56:25.86361202Z",
+              "shards": []
+            },
+            {
+              "id": 6,
+              "startTime": "2026-07-13T00:00:00Z",
+              "endTime": "2026-07-14T00:00:00Z",
+              "shards": [
+                {
+                  "id": 6,
+                  "shardOwners": [],
+                  "fileName": "20260715T004847Z.6.tar.gz",
+                  "size": 237,
+                  "compression": 1
+                }
+              ]
+            }
+          ],
+          "subscriptions": []
+        }
+      ]
+    },
+    {
+      "organizationID": "71b1970deb13d880",
+      "organizationName": "CocoaSecure",
+      "bucketID": "2350303a18bba950",
+      "bucketName": "cacao_measurements",
+      "defaultRetentionPolicy": "autogen",
+      "retentionPolicies": [
+        {
+          "name": "autogen",
+          "replicaN": 1,
+          "duration": 0,
+          "shardGroupDuration": 604800000000000,
+          "shardGroups": [
+            {
+              "id": 1,
+              "startTime": "2026-06-29T00:00:00Z",
+              "endTime": "2026-07-06T00:00:00Z",
+              "shards": [
+                {
+                  "id": 1,
+                  "shardOwners": [],
+                  "fileName": "20260715T004847Z.1.tar.gz",
+                  "size": 509,
+                  "compression": 1
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "startTime": "2026-07-06T00:00:00Z",
+              "endTime": "2026-07-13T00:00:00Z",
+              "shards": [
+                {
+                  "id": 4,
+                  "shardOwners": [],
+                  "fileName": "20260715T004847Z.4.tar.gz",
+                  "size": 5414,
+                  "compression": 1
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "startTime": "2026-07-13T00:00:00Z",
+              "endTime": "2026-07-20T00:00:00Z",
+              "shards": [
+                {
+                  "id": 5,
+                  "shardOwners": [],
+                  "fileName": "20260715T004847Z.5.tar.gz",
+                  "size": 1647,
+                  "compression": 1
+                }
+              ]
+            }
+          ],
+          "subscriptions": []
+        }
+      ]
+    },
+    {
+      "organizationID": "71b1970deb13d880",
+      "organizationName": "CocoaSecure",
+      "bucketID": "c4fcb8e799148aa9",
+      "bucketName": "_tasks",
+      "description": "System bucket for task logs",
+      "defaultRetentionPolicy": "autogen",
+      "retentionPolicies": [
+        {
+          "name": "autogen",
+          "replicaN": 1,
+          "duration": 259200000000000,
+          "shardGroupDuration": 86400000000000,
+          "shardGroups": [],
+          "subscriptions": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"fd656e0e0c4f4ad79cf6a05bed43be83","collectionName":"fraud_alerts","type":"collection"}
