@@ -1,0 +1,14 @@
+{
+  "deviceId": "ESP01",
+  "siteId": "SITE-SP-001",
+  "site": "San-Pedro Nord",
+  "lotId": "LOT-2026-001",
+  "temperature": 40.9,
+  "humidity": 58.3,
+  "co2": 788,
+  "light": 49855,
+  "battery": 94,
+  "signal": -58,
+  "simulationType": "NORMAL",
+  "timestamp": "2026-07-15T11:43:53.710Z"
+}

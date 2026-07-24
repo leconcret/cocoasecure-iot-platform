@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pymongo
+influxdb-client
+python-dotenv
+
+# Ajouts sécurité (JWT + RBAC + rate limiting)
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.9
+slowapi>=0.1.9
